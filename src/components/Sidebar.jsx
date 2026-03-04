@@ -10,7 +10,7 @@ export default function Sidebar(){
         <ul>
           <li><NavLink to="/" end>Dashboard</NavLink></li>
           <li><NavLink to="/modules">Modules</NavLink></li>
-          <li><NavLink to="/products">Products</NavLink></li>
+          <li><NavLink to="/projects">Projects</NavLink></li>
           <li><NavLink to="/customers">Customers</NavLink></li>
           <li><NavLink to="/subscriptions">Subscriptions</NavLink></li>
           <li><NavLink to="/invoices">Invoices</NavLink></li>

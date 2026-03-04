@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-const Products = React.lazy(()=>import('./pages/Products'))
+const Projects = React.lazy(()=>import('./pages/Projects'))
 const Customers = React.lazy(()=>import('./pages/Customers'))
 const Subscriptions = React.lazy(()=>import('./pages/Subscriptions'))
 const Invoices = React.lazy(()=>import('./pages/Invoices'))
@@ -38,7 +38,7 @@ function AppShell(){
             <Routes>
               <Route path="/login" element={<Login />} />
               <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-              <Route path="/products" element={<ProtectedRoute><Products /></ProtectedRoute>} />
+              <Route path="/projects" element={<ProtectedRoute><Projects /></ProtectedRoute>} />
               <Route path="/customers" element={<ProtectedRoute><Customers /></ProtectedRoute>} />
               <Route path="/subscriptions" element={<ProtectedRoute><Subscriptions /></ProtectedRoute>} />
               <Route path="/invoices" element={<ProtectedRoute><Invoices /></ProtectedRoute>} />
