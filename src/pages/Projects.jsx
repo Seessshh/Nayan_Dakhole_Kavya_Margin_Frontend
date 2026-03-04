@@ -3,6 +3,8 @@ import axios from 'axios'
 import Table from '../components/Table'
 import SearchBar from '../components/SearchBar'
 import { useLocation } from 'react-router-dom'
+import * as XLSX from "xlsx"
+import { saveAs } from "file-saver"
 
 export default function Projects(){
 
@@ -47,6 +49,38 @@ export default function Projects(){
       .includes(q.toLowerCase())
   )
 
+  function exportToExcel() {
+  if (projects.length === 0) {
+    alert("No projects to export")
+    return
+  }
+
+  // Convert data to worksheet
+  const worksheet = XLSX.utils.json_to_sheet(
+    projects.map(p => ({
+      Name: p.name,
+      Budget: p.budget,
+      Created: p.createdAt
+        ? new Date(p.createdAt).toLocaleDateString()
+        : ""
+    }))
+  )
+
+  const workbook = XLSX.utils.book_new()
+  XLSX.utils.book_append_sheet(workbook, worksheet, "Projects")
+
+  const excelBuffer = XLSX.write(workbook, {
+    bookType: "xlsx",
+    type: "array"
+  })
+
+  const data = new Blob([excelBuffer], {
+    type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8"
+  })
+
+  saveAs(data, "Projects.xlsx")
+}
+
   const columns = [
     { key:'name', label:'Project Name' },
     { key:'budget', label:'Budget' },
@@ -76,6 +110,21 @@ export default function Projects(){
         />
         <button type="submit">Add Project</button>
       </form>
+
+      <button
+  onClick={exportToExcel}
+  style={{
+    marginBottom: "15px",
+    padding: "8px 12px",
+    background: "#2e7d32",
+    color: "#fff",
+    border: "none",
+    borderRadius: "4px",
+    cursor: "pointer"
+  }}
+>
+  Export to Excel
+</button>
 
       <SearchBar
         value={q}
