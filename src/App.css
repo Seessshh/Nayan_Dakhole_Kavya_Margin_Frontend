@@ -29,7 +29,7 @@ html[data-theme="light"]{
 
 body{
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, Helvetica, sans-serif;
-  margin:0; padding:0;
+  margin:0; padding:0; width: 100%; height: 100%;
   color:var(--text);
   background:linear-gradient(180deg,#0b1220 0%,var(--bg) 100%);
   min-height:100vh
@@ -69,7 +69,7 @@ body{
 .toolbar{ display:flex; gap:8px; margin-bottom:12px }
 
 input, select, textarea{
-  width:100%;
+  width:98%;
   padding:10px;
   background:var(--surface);
   color:var(--text);
@@ -149,3 +149,171 @@ button:hover{ filter:brightness(1.05) }
   height:12px; border-radius:8px; background:linear-gradient(90deg, rgba(255,255,255,0.08), rgba(255,255,255,0.16)); margin:10px 0
 }
 
+
+
+/* Main Layout & Background */
+.login-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f0f4f8; 
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  z-index: 999; /* Ensures it sits on top of everything else */
+}
+
+/* Background Geometric Cloud Blobs */
+.shape {
+  position: absolute;
+  filter: blur(60px);
+  z-index: 0;
+  opacity: 0.6;
+}
+
+.shape-1 {
+  width: 400px;
+  height: 400px;
+  background: #4facfe;
+  border-radius: 50%;
+  top: -100px;
+  left: -100px;
+}
+
+/* Multi-hump cloud shape */
+.shape-2 {
+  width: 500px;
+  height: 300px;
+  background: #00f2fe;
+  border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; 
+  bottom: -50px;
+  right: -100px;
+}
+
+.shape-3 {
+  width: 300px;
+  height: 300px;
+  background: #e0c3fc;
+  border-radius: 50%;
+  bottom: 20%;
+  left: 15%;
+}
+
+/* Glassmorphism Login Card */
+.login-card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 400px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-sizing: border-box;
+}
+
+/* Typography & Alignment */
+.login-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.login-header h2 {
+  margin: 0 0 8px 0;
+  color: #1e293b;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.login-header p {
+  margin: 0;
+  color: #64748b;
+  font-size: 15px;
+}
+
+/* Form Inputs */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #475569;
+  margin-left: 4px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  font-size: 15px;
+  color: #1e293b;
+  background: rgba(255, 255, 255, 0.9);
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #4facfe;
+  box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.2);
+}
+
+/* Error Handling */
+.error-message {
+  color: #ef4444;
+  font-size: 13px;
+  text-align: center;
+  background: #fef2f2;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #fecaca;
+}
+
+/* Call to Action Button */
+.login-button {
+  margin-top: 10px;
+  padding: 14px;
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.login-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 242, 254, 0.4);
+}
+
+.login-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.login-button:disabled {
+  background: #94a3b8;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
